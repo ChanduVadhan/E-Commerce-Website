@@ -1,0 +1,63 @@
+<nav>
+    <div class="logo">
+        <h2>🛍️ ShopSphere</h2>
+    </div>
+
+    <div class="links">
+        {% if request.user.is_authenticated %}
+            {% if cart_nav %}
+
+                <a href="{% url 'home' %}" class="nav-link">🏠 Home</a>
+                <a href="" class="nav-link">🙍 Profile ({{ request.user.first_name }})</a>
+                <a href="{% url 'logout_' %}" class="nav-link">🚪 Logout</a>
+
+            {% else %}
+
+            <form action="" class="search-form" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.6rem; background-color: #f9f9f9; border-radius: 2rem; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);">
+                <input 
+                    type="text" 
+                    name="q" 
+                    placeholder="🔍 Search..." 
+                    class="search-box" 
+                    style="border: none; outline: none; padding: 0.5rem 1rem; border-radius: 2rem; font-size: 1rem; background-color: transparent; flex: 1; min-width: 200px; color: #333;" 
+                >
+                <input 
+                    type="submit" 
+                    value="Search" 
+                    class="btn" 
+                    style="padding: 0.5rem 1rem; border: none; border-radius: 2rem; background-color: #4CAF50; color: white; font-weight: bold; cursor: pointer;"
+                    onmouseover="this.style.backgroundColor='#388e3c'" 
+                    onmouseout="this.style.backgroundColor='#4CAF50'"
+                >
+            </form>
+            
+
+                <a href="{% url 'home' %}" class="nav-link">🏠 Home</a>
+                <a href="{% url 'cart' %}" class="nav-link">🛒 Cart ({{ count_ }})</a>
+                <a href="{% url 'profile' %}" class="nav-link">🙍 Profile ({{ request.user.first_name }})</a>
+                <a href="{% url 'logout_' %}" class="nav-link">🚪 Logout</a>
+
+            {% endif %}
+        {% else %}
+            {% if login_nav %}
+
+                <a href="{% url 'home' %}" class="nav-link">🏠 Home</a>
+                <a href="{% url 'login_' %}" class="nav-link">🔑 Login</a>
+                <a href="{% url 'Register' %}" class="nav-link">📝 Register</a>
+
+            {% else %}
+
+                <form action="" class="search-form">
+                    <input type="text" name="q" placeholder="🔍 Search..." class="search-box">
+                    <input type="submit" value="Search" class="btn">
+                </form>
+
+                <a href="{% url 'home' %}" class="nav-link">🏠 Home</a>
+                <a href="" class="nav-link">📖 Know Us</a>
+                <a href="{% url 'support' %}" class="nav-link">🛠️ Support</a>
+                <a href="{% url 'login_' %}" class="nav-link">🔑 Login</a>
+
+            {% endif %}
+        {% endif %}
+    </div>
+</nav>

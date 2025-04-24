@@ -1,0 +1,99 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="add-to-cart-container">
+    <h2>Product Added to Cart</h2>
+
+    <div class="product-details">
+        <div class="product-image">
+            <img src="{{ product.p_images.url }}" alt="{{ product.p_name }}">
+        </div>
+        <div class="product-info">
+            <h3>{{ product.p_name }}</h3>
+            <p>{{ product.p_desc }}</p>
+            <p><strong>Price:</strong> ₹{{ product.p_price }}</p>
+            <p><strong>Category:</strong> {{ product.p_category }}</p>
+        </div>
+    </div>
+
+    <div class="cart-summary">
+        <p>Your item has been successfully added to the cart!</p>
+        <a href="{% url 'cart' %}" class="btn btn-cart">Go to Cart</a>
+        <a href="{% url 'home' %}" class="btn btn-continue">Continue Shopping</a>
+    </div>
+</div>
+
+<style>
+    .add-to-cart-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+    }
+
+    .add-to-cart-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 28px;
+        color: #333;
+    }
+
+    .product-details {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+
+    .product-image img {
+        max-width: 150px;
+        border-radius: 8px;
+    }
+
+    .product-info {
+        max-width: 65%;
+    }
+
+    .product-info h3 {
+        font-size: 22px;
+        color: #007bff;
+    }
+
+    .cart-summary {
+        text-align: center;
+    }
+
+    .btn {
+        text-decoration: none;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 6px;
+        margin: 10px;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-cart {
+        background-color: #28a745;
+    }
+
+    .btn-cart:hover {
+        background-color: #218838;
+    }
+
+    .btn-continue {
+        background-color: #ffc107;
+    }
+
+    .btn-continue:hover {
+        background-color: #e0a800;
+    }
+</style>
+{% endblock content %}

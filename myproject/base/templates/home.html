@@ -1,0 +1,69 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container">
+
+    <!-- Sub-navigation for categories -->
+    <div class="subnav">
+        <form action="" class="nav-form">
+            <input type="submit" name="t" value="TRENDING" class="btn">
+        </form>
+
+        <form action="" class="nav-form">
+            <input type="submit" name="offer" value="OFFER" class="btn">
+        </form>
+
+        {% for i in cat %}
+        <form action="" class="nav-form">
+            <input type="submit" name="cat_form" value="{{i|upper}}" class="btn">
+        </form>
+        {% endfor %}
+
+        <a href="{% url 'home' %}" class="btn">All Products</a>
+    </div>
+
+    <!-- Product Grid -->
+
+    {% if all_products %}
+
+    <div class="product-grid">
+        {% for i in all_products %}
+        <div class="product-card">
+            
+            {% if trend %}
+                <h4 class="trend-label">🔥 Hot Sale Trending !!!</h4>
+            {% endif %}
+
+            {% if offer %}
+                <h4 class="offer-label">💰 50% Flat Discount Offer !!!</h4>
+            {% endif %}
+
+            <img src="{{ i.p_images.url }}" alt="{{ i.p_name }}" class="product-img">
+            <div class="product-info">
+                <h2 class="product-name">{{ i.p_name }}</h2>
+                <p class="product-price">$ {{ i.p_price }}</p>
+                <div class="product-actions">
+                    <a href="{% url 'addtocart' i.id %}" class="btn add-to-cart">🛒 Add to Cart</a>
+                    <a href="#" class="btn details">🔍 Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    {% if messages %}
+    <div class="container mt-3 ">
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+            {{ message }}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endif %}
+
+</div>
+{% endblock content %}
